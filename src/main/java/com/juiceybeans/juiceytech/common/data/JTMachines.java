@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.common.data.GCyMBlocks;
+import com.gregtechceu.gtceu.common.data.GCYMBlocks;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import net.minecraft.network.chat.Component;
@@ -24,7 +24,7 @@ public class JTMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(JTRecipeTypes.SCULK_CHAMBER_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(GCyMBlocks.CASING_NONCONDUCTING) // Replace
+            .appearanceBlock(GCYMBlocks.CASING_NONCONDUCTING) // Replace
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(" CSC ", " GGG ", " GGG ", " GGG ", " CCC ")
                     .aisle("CCCCC", "G   G", "G   G", "G   G", "CCCCC")
@@ -33,7 +33,7 @@ public class JTMachines {
                     .aisle(" CCC ", " GGG ", " GGG ", " GGG ", " CCC ")
                     .where('S', Predicates.controller(Predicates.blocks(definition.get())))
                     .where('G', Predicates.blocks(GTBlocks.FUSION_GLASS.get())) // Replace
-                    .where('C', Predicates.blocks(GCyMBlocks.CASING_NONCONDUCTING.get()) // Replace
+                    .where('C', Predicates.blocks(GCYMBlocks.CASING_NONCONDUCTING.get()) // Replace
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
