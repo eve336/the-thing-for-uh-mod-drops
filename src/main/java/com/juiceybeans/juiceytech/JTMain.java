@@ -13,6 +13,7 @@ import com.juiceybeans.juiceytech.data.JTDatagen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static com.juiceybeans.juiceytech.JTMain.MOD_ID;
+import static net.minecraft.world.level.storage.loot.entries.LootPoolEntries.ITEM;
 
 @Mod(MOD_ID)
 public class JTMain {
@@ -73,7 +75,7 @@ public class JTMain {
 
     @SubscribeEvent
     public void onLootTableLoad(LootTableLoadEvent event) {
-        JTLootTables.addSoulCanisterToLoot(event, "chests/nether_bridge", "minecraft:blaze"));
+        JTLootTables.addSoulCanisterToLoot(event, "chests/nether_bridge", "minecraft:blaze");
     }
 
     private void addMaterialRegistries(MaterialRegistryEvent event) {

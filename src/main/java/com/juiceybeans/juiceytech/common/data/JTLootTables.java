@@ -22,7 +22,7 @@ public class JTLootTables {
         lootTable.addPool(poolBuilder.build());
     }
 
-    public static void addSoulCanisterToLoot(LootTableLoadEvent event, LootTable lootTable, String tablePath, String entity) {
+    public static void addSoulCanisterToLoot(LootTableLoadEvent event, String tablePath, String entity) {
         CompoundTag nbt = new CompoundTag();
         nbt.putString("entity", entity);
 
@@ -34,7 +34,7 @@ public class JTLootTables {
                             .setWeight(1)
                             .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 1)))
                             .apply(SetNbtFunction.setTag(nbt)));
-            lootTable.addPool(poolBuilder.build());
+            event.getTable().addPool(poolBuilder.build());
         }
     }
 }
