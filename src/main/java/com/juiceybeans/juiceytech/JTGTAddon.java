@@ -8,8 +8,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.juiceybeans.juiceytech.JTMain.MOD_ID;
-
 @SuppressWarnings("unused")
 @GTAddon
 public class JTGTAddon implements IGTAddon {
@@ -25,7 +23,7 @@ public class JTGTAddon implements IGTAddon {
 
     @Override
     public String addonModId() {
-        return MOD_ID;
+        return JTMain.MOD_ID;
     }
 
     @Override

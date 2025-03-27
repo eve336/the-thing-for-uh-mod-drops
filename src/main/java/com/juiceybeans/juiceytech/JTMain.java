@@ -7,15 +7,16 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import com.juiceybeans.juiceytech.common.data.JTMachines;
-import com.juiceybeans.juiceytech.common.data.JTMaterials;
-import com.juiceybeans.juiceytech.common.data.JTRecipeTypes;
-import com.juiceybeans.juiceytech.common.data.JTTabs;
+import com.juiceybeans.juiceytech.common.data.*;
+import com.juiceybeans.juiceytech.common.item.SoulCanisterItem;
+import com.juiceybeans.juiceytech.data.JTDatagen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,12 +30,13 @@ import static com.juiceybeans.juiceytech.JTMain.MOD_ID;
 public class JTMain {
     public static final String MOD_ID = "juiceytech";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static GTRegistrate JT_REGISTRATE = GTRegistrate.create(MOD_ID);
+    public static GTRegistrate JT_REGISTRATE = GTRegistrate.create(JTMain.MOD_ID);
 
     public JTMain() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         JTTabs.init();
+        JTItems.init();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -48,16 +50,20 @@ public class JTMain {
         // If we want to use annotations to register event listeners,
         // we need to register our object like this!
         MinecraftForge.EVENT_BUS.register(this);
+
+        JTDatagen.init();
+        JT_REGISTRATE.registerRegistrate();
     }
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(MOD_ID, path);
+        return new ResourceLocation(JTMain.MOD_ID, path);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
             LOGGER.info("Look, I found a {}!", Items.DIAMOND);
+            JTItems.generateSoulCanistersForMobs();
         });
     }
 
@@ -65,8 +71,13 @@ public class JTMain {
         LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
     }
 
+    @SubscribeEvent
+    public void onLootTableLoad(LootTableLoadEvent event) {
+        JTLootTables.addSoulCanisterToLoot(event, "chests/nether_bridge", "minecraft:blaze"));
+    }
+
     private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(MOD_ID);
+        GTCEuAPI.materialManager.createRegistry(JTMain.MOD_ID);
     }
 
     private void addMaterials(MaterialEvent event) {
@@ -83,5 +94,6 @@ public class JTMain {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         JTMachines.init();
+        JTMultiblocks.init();
     }
 }

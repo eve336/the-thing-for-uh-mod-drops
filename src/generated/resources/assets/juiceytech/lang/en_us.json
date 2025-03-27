@@ -1,0 +1,9 @@
+{
+  "block.juiceytech.mob_duplicator": "Mob Duplicator",
+  "block.juiceytech.sculk_growth_chamber": "Sculk Growth Chamber",
+  "gtceu.mob_duplication": "Mob Duplication",
+  "gtceu.sculk_chamber": "Sculk Chamber",
+  "item.juiceytech.soul_canister": "Soul Canister",
+  "itemGroup.juiceytech.juiceytech_items": "JuiceyTech Materials",
+  "tooltip.item.juiceytech.soul_canister.1": "§7Stored Mob: §r§b%s"
+}

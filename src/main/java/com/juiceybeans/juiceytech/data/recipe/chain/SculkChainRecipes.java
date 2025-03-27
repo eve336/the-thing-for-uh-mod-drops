@@ -21,15 +21,14 @@ public class SculkChainRecipes {
                 .inputItems(Items.AMETHYST_SHARD)
                 .inputFluids(GTMaterials.Mutagen.getFluid(720)) // Replace with liquid experience
                 .outputItems(Items.ECHO_SHARD)
-                .duration(300)
-                .EUt(VA[EV]);
-
+                .duration(300).EUt(VA[EV])
+                .save(provider);
 
         SCULK_CHAMBER_RECIPES.recipeBuilder(JTMain.id("sculk"))
                 .inputItems(BlockTags.SCULK_REPLACEABLE)
                 .inputFluids(GTMaterials.Mutagen.getFluid(144)) // Replace with liquid experience
                 .outputItems(Items.SCULK)
-                .duration(40)
-                .EUt(VA[LV]);
+                .duration(40).EUt(VA[LV])
+                .save(provider);
     }
 }

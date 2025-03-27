@@ -17,6 +17,13 @@ public class JTRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMPUTATION);
 
+    public static final GTRecipeType MOB_DUPLICATION_RECIPES = GTRecipeTypes.register("mob_duplication", MULTIBLOCK)
+            .setMaxIOSize(1, 9, 1, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SLOT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.REPLICATOR);
+
     public static void init() {
     }
 }
